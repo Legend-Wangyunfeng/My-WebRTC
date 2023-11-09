@@ -1,20 +1,27 @@
 class Clients {
   constructor() {
-    this.users = []
+    this.users = {};
   }
   addUser(user) {
-    if(!user?.username) return
-    //如果users中存在与user的username属性相同的元素，则直接返回
-    if(this.users.find(item => item.username === user.username)) {
-      return
+    if(!user?.username) return;
+    if(this.users[user.room]) {
+      if(this.users[user.room].length === 2) {
+        const msg = "Max member in a room is 2!";
+        return msg;
+      }
+      else if (this.users[user.room].length < 2) {
+        this.users[user.room].push(user);
+      }
     }
-    this.users.push(user)
+    else {
+      this.users[user.room] = [user];
+    }
   }
   removeUser(user) {
     if(!user?.username) return
-    this.users = this.users.filter(item => item.username !== user.username)
+    if(this.users[user.room]) {
+      this.users[user.room] = this.users[user.room].filter(u => u.id !== user.id);
+    }
   }
-  getUser(username) {
-    return this.users.find(item => item.username === username)
-  }
+
 }

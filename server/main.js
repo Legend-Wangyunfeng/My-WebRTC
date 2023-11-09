@@ -1,14 +1,20 @@
-import express from "express";
-import { createServer } from "http";
-import { Server } from "socket.io";
+import { SOCKET_ON_RTC, SOCKET_ON_SYS, SOCKET_ON_EMIT } from './enum';
+import initApp from './config';
+import Clients from './clients';
 
-const app = express();
-const httpServer = createServer(app);
-const io = new Server(httpServer, {
-  cors: {
-    origin: "*",
-  },
-  path: "/"
- });
+let io = initApp();
+let clients = new Clients();
 
- httpServer.listen(80);
+io.on(SOCKET_ON_SYS.CONNECTION, (socket) => {
+
+  const { query } = socket.handshake;
+  const { username, room } = query;
+  let user = {
+    id: socket.id,
+    username,
+    room
+  };
+  clients.addUser(user);
+
+  // TODO
+})
