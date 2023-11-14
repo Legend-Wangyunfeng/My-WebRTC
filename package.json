@@ -6,10 +6,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "serve": "node server/main.js",
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.3.4"
+    "socket.io-client": "^4.7.2",
+    "vue": "^3.3.4",
+    "webrtc-adapter": "^8.2.3"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",

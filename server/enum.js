@@ -12,4 +12,15 @@ export const SOCKET_ON_SYS = {
 export const SOCKET_ON_EMIT = {
   SYS_USER_LIST : 'userList',
   LEAVE: 'leave',
+  MESSAGE: 'message',
+}
+
+export const ERR_MSG = {
+  FULL: 'full'
+}
+
+export const ERR_CODE = {
+  FULL: 1,
+  COMPLETED: 2,
+  SUCCEED:0
 }
